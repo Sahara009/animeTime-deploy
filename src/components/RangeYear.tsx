@@ -18,6 +18,7 @@ export const RangeYear: React.FC<Props> = ({ onRangeChange }) => {
   );
 
   const handleChange = (event: Event, newValue: number | number[]) => {
+    console.log(event);
     setYearsRange(newValue as number[]);
   };
 

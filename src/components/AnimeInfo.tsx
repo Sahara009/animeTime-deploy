@@ -12,7 +12,7 @@ export const AnimeInfo: React.FC<Props> = () => {
   const { code } = useParams();
   const [title, setTitle] = useState<List>();
   const [error, setError] = useState<string | null>(null);
-  const [activeEpisode, setActiveEpisode] = useState<string>("1"); // eslint-disable-line @typescript-eslint/no-unused-vars
+  const [activeEpisode, setActiveEpisode] = useState<string>("1");
   console.log("консоль ошикбки:", error);
 
   const createTitle = async () => {
