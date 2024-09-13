@@ -1,0 +1,92 @@
+.input_wrapper {
+  .popover {
+    overflow: hidden;
+    background-color: #181528;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    max-height: 500px;
+    overflow-y: auto;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 8px;
+  }
+}
+.search_items {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.search_item {
+  display: flex;
+  padding: 5px;
+  color: white;
+  gap: 10px;
+
+  &-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 5px;
+    height: auto;
+    color: rgb(255, 87, 160);
+
+    .search_genres {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      color: gray;
+    }
+  }
+  img {
+    width: 80px;
+    height: auto;
+    border-radius: 4px;
+  }
+}
+.input-anime {
+  width: 25.7rem;
+  margin: 0 30px 0 0;
+  height: 50px;
+  background-color: #181528;
+  color: white;
+  border: none;
+  border-bottom: 2px solid rgba(255, 87, 160, 0.8);
+  padding: 10px;
+  font-size: 14px;
+  outline: none;
+  border-radius: 7px;
+  transition: 0.2s ease-in-out;
+
+  &::placeholder {
+    color: white;
+    opacity: 0.7;
+  }
+
+  &:focus {
+    font-size: 17px;
+    border-bottom-color: rgb(231, 83, 147);
+  }
+}
+
+@media (max-width: 1115px) {
+  .input-anime {
+    width: 22rem;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 925px) {
+  input {
+    width: 17rem;
+  }
+}
+@media (max-width: 880px) {
+  .input-anime {
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+  }
+  .input_wrapper {
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+  }
+}

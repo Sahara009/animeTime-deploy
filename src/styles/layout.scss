@@ -1,0 +1,125 @@
+$title-color: #ff4081;
+
+.title {
+  font-size: 34px;
+  font-weight: 500;
+  transition: 0.2s ease-in-out;
+}
+.title:hover {
+  color: $title-color;
+  text-shadow: 0 0 10px rgba(255, 87, 160, 0.8);
+}
+.header {
+  padding: 15px 0;
+  background-color: rgb(14, 11, 33);
+  box-shadow: 0 12px 15px rgba(14, 8, 25, 0.496);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  &_list {
+    display: flex;
+    gap: 15px;
+    font-weight: 500;
+    font-size: 20px;
+
+    a {
+      transition: 0.2s ease-in-out;
+    }
+
+    a:hover {
+      color: $title-color;
+    }
+
+    @media (max-width: 530px) {
+      width: 0;
+      height: 0;
+      overflow: hidden;
+    }
+  }
+  &_modal {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+  }
+}
+.randompage {
+  width: 300px;
+  margin: 0 auto;
+  padding: 30px 0;
+
+  button {
+    border: 1px solid rgba(255, 87, 160, 0.8);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin: 10px 80px;
+    background-color: transparent;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      background-color: rgba(255, 42, 78, 0.226);
+    }
+  }
+}
+.footer {
+  position: relative;
+  margin: 40px 15px 10px 15px;
+  height: 200px;
+  background-color: rgb(14, 11, 33);
+  color: white;
+  border-radius: 9px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+
+  .side {
+    &-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .media_info {
+        h4 {
+          color: rgb(255, 87, 160);
+          font-size: 32px;
+          font-weight: 500;
+        }
+        p {
+          color: gray;
+          padding-top: 5px;
+        }
+      }
+      .socials_icons {
+        display: flex;
+        gap: 8px;
+      }
+    }
+    &-center {
+      img {
+        top: 0;
+        left: 45%;
+        transform: translateX(-45%);
+        width: 332px;
+        height: 200px;
+        position: absolute;
+      }
+    }
+    &-right {
+      margin: auto 0;
+      max-width: 400px;
+      width: 100%;
+      h4 {
+        font-size: 32px;
+        padding-bottom: 10px;
+      }
+      p {
+        color: gray;
+        font-weight: 300;
+      }
+    }
+  }
+}

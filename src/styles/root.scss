@@ -1,0 +1,57 @@
+@import "./reset.scss";
+@import "./layout.scss";
+@import "./homepage.scss";
+@import "./modal.scss";
+@import "./serials.scss";
+@import "./input.scss";
+@import "./filters.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: rgb(240, 58, 137);
+}
+.swiper-pagination {
+  span {
+    width: 15px;
+    height: 15px;
+    top: 15px;
+    background: rgb(240, 58, 137);
+  }
+}
+* {
+  font-family: "Roboto Mono", monospace;
+  // border: 1px solid red;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.main {
+  flex: 1;
+}
+
+body {
+  position: relative;
+  background-color: rgb(23, 23, 37);
+  overflow: hidden;
+  height: 100%;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.animeInfo-wrapper {
+  margin: 0 170px;
+}
