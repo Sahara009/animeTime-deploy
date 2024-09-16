@@ -1,8 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { getTitleInfo } from "../api";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { List } from "../types/schedule.type";
 import ReactPlayer from "react-player";
+import { AnimeDescription } from "./AnimeDescription";
+
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import { AISkeleton } from "./AISkeleton";
 
 interface Props {
   className?: string;
@@ -11,59 +21,63 @@ interface Props {
 export const AnimeInfo: React.FC<Props> = () => {
   const { code } = useParams();
   const [title, setTitle] = useState<List>();
-  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const [activeEpisode, setActiveEpisode] = useState<string>("1");
-  console.log("консоль ошикбки:", error);
+  const location = useLocation();
 
   const createTitle = async () => {
+    setLoading(true);
     if (code) {
       const data = await getTitleInfo(code);
-      console.log(data);
       setTitle(data);
+      setLoading(false);
     } else {
-      setError("Не удалось загрузить расписание");
+      setLoading(false);
+      console.log("ошибка запроса");
     }
+  };
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    setActiveEpisode(event.target.value);
   };
 
   useEffect(() => {
     createTitle();
-  }, []);
+  }, [location]);
 
-  if (!title) {
-    return <h2>soon</h2>;
-  }
-
-  console.log(activeEpisode);
-
-  return (
+  return loading ? (
+    <AISkeleton />
+  ) : (
     <div className="animeInfo-wrapper container" style={{ paddingTop: 40 }}>
-      <div className="animeinfo">
-        <img
-          style={{ width: 300, borderRadius: 9 }}
-          src={`https://static-libria.weekstorm.one${title?.posters.original.url}`}
-          alt="gdfgdfg"
-        />
-        <div className="animeinfo-description">
-          <h2>{title?.names.en}</h2>
-          <p>{title.description}</p>
-        </div>
-      </div>
-      <select
-        value={activeEpisode}
-        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-          setActiveEpisode(e.target.value);
-        }}
-        className="select"
-      >
-        {title?.player.list.map((episode) => (
-          <option key={episode.episode} value={episode.episode}>
-            Episode {episode.episode}
-          </option>
-        ))}
-      </select>
+      <AnimeDescription title={title} />
+      <FormControl style={{ marginTop: 20 }}>
+        <InputLabel id="episode-select-label">Select Episode</InputLabel>
+        <Select
+          labelId="episode-select-label"
+          value={activeEpisode}
+          onChange={handleChange}
+          label="Select Episode"
+          className="customSelect"
+          MenuProps={{
+            PaperProps: {
+              className: "customMenuItem",
+            },
+          }}
+        >
+          {title?.player.list.map((episode) => (
+            <MenuItem
+              key={episode.episode}
+              value={episode.episode}
+              className="customMenuItem"
+            >
+              <p>Episode {episode.episode}</p>
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+
       <div className="player">
-        {title.player.list.map((ep) =>
-          ep.episode == Number(activeEpisode) ? (
+        {title?.player.list.map((ep) =>
+          ep.episode === Number(activeEpisode) ? (
             <ReactPlayer
               key={ep.uuid}
               width="100%"

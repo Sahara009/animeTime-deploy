@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { searchFilterAnime } from "../api";
 import { ListArray } from "../types/schedule.type";
@@ -32,13 +32,12 @@ export const Filters: React.FC<Props> = () => {
     setSelectedTypes(type);
   };
   // годы
-  const [yearsString, setYearsString] = useState<string>(""); // Храним строку с годами
+  const [yearsString, setYearsString] = useState<string>("");
   const handleRangeChange = (yearsString: string) => {
-    setYearsString(yearsString); // Обновляем строку с годами
+    setYearsString(yearsString);
   };
 
-  // запрос
-  const createFilter = async () => {
+  const createFilter = useCallback(async () => {
     const data = await searchFilterAnime(
       yearsString,
       selectedGenresString,
@@ -49,12 +48,13 @@ export const Filters: React.FC<Props> = () => {
     if (data) {
       setFilterAnime(data);
     } else {
-      console.log("ошикба");
+      console.log("ошибка");
     }
-  };
+  }, [yearsString, selectedGenresString, selectedSeasons, selectedTypes]);
+
   useEffect(() => {
     createFilter();
-  }, [yearsString, selectedGenresString, selectedSeasons, selectedTypes]);
+  }, [createFilter]);
 
   return (
     <div className="container filter-wrapper">
@@ -66,7 +66,11 @@ export const Filters: React.FC<Props> = () => {
       </Box>
       <div className="filter-anime">
         {filterAnime?.map((anime) => (
-          <AnimeCard className="filter-anime_card" item={anime} />
+          <AnimeCard
+            key={anime.code}
+            className="filter-anime_card"
+            item={anime}
+          />
         ))}
       </div>
     </div>

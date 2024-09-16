@@ -3,7 +3,7 @@ import { AnimeInfo, AnimeList, Homepage, Layout } from "./components";
 import "react-loading-skeleton/dist/skeleton.css";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { RandomPage } from "./components/RandomPage";
-
+import "./styles/root.scss";
 import { Filters } from "./components/Filters";
 
 export function App() {

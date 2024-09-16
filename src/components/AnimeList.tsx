@@ -12,8 +12,7 @@ interface Props {
 
 export const AnimeList: React.FC<Props> = () => {
   const [list, setList] = useState<List[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  console.log(error);
+
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
 
@@ -25,7 +24,7 @@ export const AnimeList: React.FC<Props> = () => {
         setHasMore(false);
       }
     } else {
-      setError("Не удалось загрузить расписание");
+      console.log("ошибка запроса");
     }
   };
 

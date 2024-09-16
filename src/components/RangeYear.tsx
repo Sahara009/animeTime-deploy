@@ -12,6 +12,7 @@ export const RangeYear: React.FC<Props> = ({ onRangeChange }) => {
   const [yearsRange, setYearsRange] = useState<number[]>([1996, 2024]);
 
   // Используем debounce для функции, которая передает данные родителю
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedOnRangeChange = useCallback(
     debounce((yearsString: string) => onRangeChange(yearsString), 200),
     [onRangeChange]
@@ -48,12 +49,13 @@ export const RangeYear: React.FC<Props> = ({ onRangeChange }) => {
       yearsRange[0],
       yearsRange[1]
     ).join(",");
-    debouncedOnRangeChange(yearsBetweenString); // Используем дебаунс
+    debouncedOnRangeChange(yearsBetweenString);
   }, [yearsRange, debouncedOnRangeChange]);
 
   return (
     <Slider
       value={yearsRange}
+      defaultValue={2024}
       onChange={handleChange}
       valueLabelDisplay="auto"
       min={1996}

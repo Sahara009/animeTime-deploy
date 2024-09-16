@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { ListArray } from "../types/schedule.type";
 import { searchAnime } from "../api";
-import { Link } from "react-router-dom";
-import { debounce } from "@mui/material"; // Добавляем debounce из MUI
+import { Link, useLocation } from "react-router-dom";
+import { debounce } from "@mui/material";
+import image from "../assets/1056868.512.webp";
 
 interface Props {
   className?: string;
@@ -11,22 +12,29 @@ interface Props {
 export const Input: React.FC<Props> = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [animeList, setAnimeList] = useState<ListArray | undefined>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const location = useLocation();
 
-  // Создаем функцию с debounce
   const debouncedSearch = debounce(async (term: string) => {
+    setLoading(true);
     if (term) {
       const data = await searchAnime(term);
       setAnimeList(data);
     } else {
       setAnimeList([]);
     }
-  }, 3000); // 3000 миллисекунд = 3 секунды
+    setLoading(false);
+  }, 300);
 
   useEffect(() => {
     debouncedSearch(searchTerm);
-    // Отменяем предыдущий debounce при смене значения
     return () => debouncedSearch.clear();
   }, [searchTerm]);
+
+  useEffect(() => {
+    setSearchTerm("");
+    setAnimeList([]);
+  }, [location]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -43,30 +51,42 @@ export const Input: React.FC<Props> = () => {
         onChange={handleInputChange}
       />
 
-      {searchTerm && ( // Добавляем условие для отображения списка
+      {searchTerm && (
         <div
           className="popover"
           style={{ position: "absolute", top: "100%", left: 0, zIndex: 1 }}
         >
           <ul className="search_items">
-            {animeList?.slice(0, 3).map((anime) => (
-              <Link to={`/serials/${anime.code}`} key={anime.id}>
-                <div className="search_item">
-                  <img
-                    src={`https://static-libria.weekstorm.one${anime?.posters.original.url}`}
-                    alt=""
-                  />
-                  <div className="search_item-info">
-                    <h4>{anime.names.ru}</h4>
-                    <div className="search_genres">
-                      {anime.genres.map((genr, index) => (
-                        <li key={index}>{genr}</li>
-                      ))}
+            {loading ? (
+              <div className="loading-search_image">
+                <p>Будь терпеливее сенпай...</p>
+                <img src={image} alt="" />
+              </div>
+            ) : (
+              <>
+                {animeList?.slice(0, 3).map((anime) => (
+                  <Link to={`/serials/${anime.code}`} key={anime.id}>
+                    <div className="search_item">
+                      <img
+                        src={`https://static-libria.weekstorm.one${anime?.posters.original.url}`}
+                        alt=""
+                      />
+                      <div className="search_item-info">
+                        <h4>{anime.names.ru}</h4>
+                        <div className="search_genres">
+                          {anime.genres.map((genr, index) => (
+                            <li key={index}>{genr}</li>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                  </Link>
+                ))}
+                <Link className="more-button" to={"/filters"}>
+                  <button>Ещё</button>
+                </Link>
+              </>
+            )}
           </ul>
         </div>
       )}

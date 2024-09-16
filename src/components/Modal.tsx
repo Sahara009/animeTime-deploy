@@ -15,7 +15,7 @@ export const Modal: React.FC<Props> = ({ handlerModal }) => {
       </div>
       <nav className="header_modal">
         <NavLink to={"/serials"}>Serials</NavLink>
-        <NavLink to={"/genres"}>Genres</NavLink>
+        <NavLink to={"/filters"}>Genres</NavLink>
         <NavLink to={"/random"}>Random</NavLink>
       </nav>
     </div>

@@ -26,7 +26,6 @@ const daysOfWeek: string[] = [
 
 export const Homepage: React.FC<Props> = () => {
   const [schedule, setSchedule] = useState<ScheduleArray>([]);
-  console.log(schedule);
   const [error, setError] = useState<string | null>(null);
 
   const createSchedule = async () => {

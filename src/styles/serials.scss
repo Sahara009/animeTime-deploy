@@ -59,3 +59,46 @@
   display: flex;
   justify-content: center;
 }
+.customSelect {
+  background-color: rgb(14, 11, 33);
+  color: white;
+  width: fit-content;
+  p {
+    color: white;
+  }
+}
+.MuiList-root {
+  background-color: rgb(14, 11, 33);
+  color: white;
+}
+.customSelect .MuiSelect-icon {
+  color: white;
+  background-color: rgb(14, 11, 33);
+}
+.customMenuItem {
+  background-color: rgb(14, 11, 33);
+
+  color: white;
+}
+.animeInfo_skeleton {
+  display: flex;
+  gap: 30px;
+
+  &-poster {
+    width: 250px;
+    height: 357px;
+  }
+
+  &-title {
+    width: 100%;
+    max-width: 750px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+
+  &-desc {
+    width: 100%;
+    max-width: 800px;
+    height: 55px;
+  }
+}

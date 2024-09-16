@@ -1,4 +1,4 @@
-$title-color: #ff4081;
+$title-color: #e91e63;
 
 .title {
   font-size: 34px;
@@ -7,7 +7,7 @@ $title-color: #ff4081;
 }
 .title:hover {
   color: $title-color;
-  text-shadow: 0 0 10px rgba(255, 87, 160, 0.8);
+  text-shadow: 0 0 10px #e91e63;
 }
 .header {
   padding: 15px 0;
@@ -31,7 +31,7 @@ $title-color: #ff4081;
       color: $title-color;
     }
 
-    @media (max-width: 530px) {
+    @media (max-width: 590px) {
       width: 0;
       height: 0;
       overflow: hidden;
@@ -51,7 +51,7 @@ $title-color: #ff4081;
   padding: 30px 0;
 
   button {
-    border: 1px solid rgba(255, 87, 160, 0.8);
+    border: 1px solid #e91e63;
     color: white;
     font-size: 20px;
     font-weight: 600;
@@ -76,15 +76,15 @@ $title-color: #ff4081;
   display: flex;
   justify-content: space-between;
   padding: 20px 30px;
-
   .side {
     &-left {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+
       .media_info {
         h4 {
-          color: rgb(255, 87, 160);
+          color: #e91e63;
           font-size: 32px;
           font-weight: 500;
         }
@@ -107,7 +107,20 @@ $title-color: #ff4081;
         height: 200px;
         position: absolute;
       }
+      @media (max-width: 1085px) {
+        img {
+          left: 35%;
+        }
+      }
+      @media (max-width: 890px) {
+        img {
+          width: 0;
+          height: 0;
+          overflow: hidden;
+        }
+      }
     }
+
     &-right {
       margin: auto 0;
       max-width: 400px;
@@ -120,6 +133,23 @@ $title-color: #ff4081;
         color: gray;
         font-weight: 300;
       }
+    }
+    @media (max-width: 725px) {
+      &-right {
+        width: 0;
+        height: 0;
+        overflow: hidden;
+      }
+    }
+  }
+}
+@media (max-width: 725px) {
+  .footer {
+    display: flex;
+    justify-content: center;
+
+    p {
+      font-size: 22px;
     }
   }
 }

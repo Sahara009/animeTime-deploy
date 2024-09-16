@@ -3,7 +3,6 @@ import { getRandomTitle } from "../api";
 import { AnimeCard } from "./AnimeCard";
 import { List } from "../types/schedule.type";
 import { Link } from "react-router-dom";
-import Skeleton from "react-loading-skeleton";
 
 interface Props {
   className?: string;
@@ -11,40 +10,30 @@ interface Props {
 
 export const RandomPage: React.FC<Props> = () => {
   const [random, setRandom] = useState<List | undefined>();
+  const [imageLoading, setImageLoading] = useState<boolean>(true);
 
   const getRandom = async () => {
     const data = await getRandomTitle();
     if (data) {
       setRandom(data);
+    } else {
+      console.log("ошибка запроса");
     }
   };
+
   useEffect(() => {
     getRandom();
   }, []);
 
-  if (!random) {
-    return (
-      <div className="skeleton_randon-wrapper">
-        <Skeleton
-          baseColor="#363737"
-          className="randon_skeleton"
-          width={300}
-          height={428}
-        />
-        <Skeleton
-          baseColor="#363737"
-          className="randon_skeleton-button"
-          width={140}
-          height={50}
-        />
-      </div>
-    );
-  }
+  const handleImageLoad = () => {
+    setImageLoading(false);
+  };
 
   return (
     <div className="container">
       <div className="randompage">
-        <AnimeCard item={random} />
+        <AnimeCard item={random} onImageLoad={handleImageLoad} />
+        {imageLoading && <></>}
         <Link to={`/serials/${random?.code}`}>
           <button>Смотреть</button>
         </Link>
