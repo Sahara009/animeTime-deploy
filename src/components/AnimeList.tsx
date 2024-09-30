@@ -12,19 +12,20 @@ interface Props {
 
 export const AnimeList: React.FC<Props> = () => {
   const [list, setList] = useState<List[]>([]);
-
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
 
   const createList = async (pageNumber: number) => {
     const data = await getAnimeUpdates(pageNumber);
-    if (data) {
-      setList((prevList) => [...prevList, ...data]);
-      if (data.length === 0) {
-        setHasMore(false);
-      }
+    if (data && data.length > 0) {
+      setList((prevList) => {
+        const uniqueData = data.filter(
+          (newItem) => !prevList.some((item) => item.id === newItem.id)
+        );
+        return [...prevList, ...uniqueData];
+      });
     } else {
-      console.log("ошибка запроса");
+      setHasMore(false);
     }
   };
 
@@ -36,9 +37,7 @@ export const AnimeList: React.FC<Props> = () => {
     createList(page);
   }, [page]);
 
-  console.log(list);
-
-  if (list.length == 0) {
+  if (list.length === 0) {
     return (
       <div className="skeletons container">
         <Skeleton
@@ -59,12 +58,12 @@ export const AnimeList: React.FC<Props> = () => {
           dataLength={list.length}
           next={fetchMoreData}
           hasMore={hasMore}
-          loader={<img className="loading" src={loading} />}
+          loader={<img className="loading" src={loading} alt="Loading..." />}
         >
           <ul className="list_anime">
-            {list.map((item, index) => (
-              <div className="list_anime-item">
-                <AnimeCard key={index} item={item} />
+            {list.map((item) => (
+              <div className="list_anime-item" key={item.id}>
+                <AnimeCard item={item} />
               </div>
             ))}
           </ul>

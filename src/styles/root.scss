@@ -5,6 +5,7 @@
 @import "./serials.scss";
 @import "./input.scss";
 @import "./filters.scss";
+@import "./skeletons.scss";
 
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
@@ -56,4 +57,10 @@ body::-webkit-scrollbar {
 }
 .animeInfo-wrapper {
   margin: 0 170px;
+  @media (max-width: 1000px) {
+    margin: 0 50px;
+  }
+  @media (max-width: 800px) {
+    margin: 0px;
+  }
 }

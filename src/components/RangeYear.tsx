@@ -1,66 +1,54 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { Slider, debounce } from "@mui/material";
-
+import React, { useState, useEffect } from "react";
+import { Slider, Box, Typography } from "@mui/material";
 import { getYears } from "../api";
 
-interface Props {
-  className?: string;
-  onRangeChange: (yearsString: string) => void;
+interface RangeYearProps {
+  onRangeChange: (years: string) => void;
 }
 
-export const RangeYear: React.FC<Props> = ({ onRangeChange }) => {
-  const [yearsRange, setYearsRange] = useState<number[]>([1996, 2024]);
-
-  // Используем debounce для функции, которая передает данные родителю
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedOnRangeChange = useCallback(
-    debounce((yearsString: string) => onRangeChange(yearsString), 200),
-    [onRangeChange]
-  );
-
-  const handleChange = (event: Event, newValue: number | number[]) => {
-    console.log(event);
-    setYearsRange(newValue as number[]);
-  };
-
-  const getYearsBetween = (start: number, end: number) => {
-    const years: number[] = [];
-    for (let year = start; year <= end; year++) {
-      years.push(year);
-    }
-    return years;
-  };
-
-  const createSchedule = async () => {
-    const data = await getYears();
-    if (data && data.length >= 2) {
-      setYearsRange([data[0], data[data.length - 1]]);
-    } else {
-      console.log("ошибка запроса");
-    }
-  };
+export const RangeYear: React.FC<RangeYearProps> = ({ onRangeChange }) => {
+  const [years, setYears] = useState<number[]>([]);
+  const [selectedRange, setSelectedRange] = useState<number[]>([1995, 2024]);
 
   useEffect(() => {
-    createSchedule();
+    const fetchYears = async () => {
+      const yearsData = await getYears();
+      if (yearsData) {
+        const filteredYears = yearsData.filter((year) => year <= 2024);
+        console.log(filteredYears);
+        setYears(filteredYears);
+      }
+    };
+    fetchYears();
   }, []);
 
-  useEffect(() => {
-    const yearsBetweenString = getYearsBetween(
-      yearsRange[0],
-      yearsRange[1]
-    ).join(",");
-    debouncedOnRangeChange(yearsBetweenString);
-  }, [yearsRange, debouncedOnRangeChange]);
+  const handleSliderChange = (event: Event, newValue: number | number[]) => {
+    const selectedYears = newValue as number[];
+    setSelectedRange(selectedYears);
+
+    const yearsRange = Array.from(
+      { length: selectedYears[1] - selectedYears[0] + 1 },
+      (_, i) => selectedYears[0] + i
+    );
+
+    onRangeChange(yearsRange.join(","));
+  };
 
   return (
-    <Slider
-      value={yearsRange}
-      defaultValue={2024}
-      onChange={handleChange}
-      valueLabelDisplay="auto"
-      min={1996}
-      max={2024}
-      className="slider"
-    />
+    <Box sx={{ width: 300, maxWidth: 250, margin: "20px auto" }}>
+      <Typography gutterBottom>Выберите год</Typography>
+      {years.length > 0 ? (
+        <Slider
+          value={selectedRange}
+          onChange={handleSliderChange}
+          valueLabelDisplay="auto"
+          min={years[0]}
+          max={years[years.length - 1]}
+          marks
+        />
+      ) : (
+        <Typography>Загрузка годов...</Typography>
+      )}
+    </Box>
   );
 };

@@ -4,7 +4,6 @@ import { useLocation, useParams } from "react-router-dom";
 import { List } from "../types/schedule.type";
 import ReactPlayer from "react-player";
 import { AnimeDescription } from "./AnimeDescription";
-
 import {
   FormControl,
   InputLabel,
@@ -87,6 +86,9 @@ export const AnimeInfo: React.FC<Props> = () => {
             />
           ) : null
         )}
+      </div>
+      <div className="hidden-desc">
+        <h4>{title?.description}</h4>
       </div>
     </div>
   );

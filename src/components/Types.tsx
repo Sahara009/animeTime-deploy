@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent } from "react";
 
 interface TypeSelectProps {
-  onTypeChange: (types: string) => void;
+  onTypeChange: (types: number[]) => void; // Передаем индексы как числа
 }
 
 const typesList: string[] = ["Фильм", "TV", "OVA", "ONA", "Спешил", "WEB"];
@@ -16,7 +16,7 @@ const TypesSelect: React.FC<TypeSelectProps> = ({ onTypeChange }) => {
     if (selectedValue !== "" && !selectedTypes.includes(selectedIndex)) {
       const updatedIndexes = [...selectedTypes, selectedIndex];
       setSelectedTypes(updatedIndexes);
-      onTypeChange(updatedIndexes.map((index) => typesList[index]).join(", "));
+      onTypeChange(updatedIndexes);
     }
   };
 
@@ -25,7 +25,7 @@ const TypesSelect: React.FC<TypeSelectProps> = ({ onTypeChange }) => {
       (index) => index !== typeIndexToRemove
     );
     setSelectedTypes(updatedIndexes);
-    onTypeChange(updatedIndexes.map((index) => typesList[index]).join(", "));
+    onTypeChange(updatedIndexes);
   };
 
   return (

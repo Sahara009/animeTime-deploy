@@ -11,7 +11,7 @@ export const AnimeDescription: React.FC<Props> = ({ title }) => {
   return (
     <div className="animeinfo">
       <img
-        style={{ width: 300, borderRadius: 9 }}
+        style={{ borderRadius: 9 }}
         src={`https://static-libria.weekstorm.one${title?.posters.original.url}`}
         alt="error image"
       />

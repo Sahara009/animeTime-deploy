@@ -61,16 +61,17 @@ export const searchAnime = async (query: string) => {
   }
 };
 export const searchFilterAnime = async (
-  years: string,
+  // years: string,
+  searchTerm: string,
   genres: string,
   season_code: string,
   selectedTypes: string
 ) => {
   try {
     const response = await axiosUrl.get(
-      `title/search?year=${years}&genres=${genres}&limit=20&season_code=${season_code}&type=${selectedTypes}`
+      `title/search?&search=${searchTerm}&genres=${genres}&limit=20&season_code=${season_code}&type=${selectedTypes}`
     );
-    console.log(response);
+
     return response.data.list as List[] | undefined;
   } catch (error) {
     console.error("Error fetching filter:", error);
@@ -88,7 +89,7 @@ export const getGenres = async () => {
 export const getYears = async () => {
   try {
     const response = await axiosUrl.get<number[]>(`years`);
-
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching years:", error);

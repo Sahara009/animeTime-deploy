@@ -30,8 +30,8 @@ export const AnimeCard: React.FC<Props> = ({
           <Skeleton
             baseColor="#363737"
             className="skeleton-placeholder"
-            width={300}
-            height={428}
+            width={245}
+            height={350}
           />
         )}
         <img

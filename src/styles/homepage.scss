@@ -20,105 +20,7 @@
   font-size: 20px;
   font-weight: 700;
 }
-.posters {
-  padding-top: 15px;
-  // display: flex;
-  // flex-wrap: wrap;
-  // gap: 30px;
-  // justify-content: space-around;
-  // align-items: center;
 
-  &-item {
-    border-radius: 9px;
-    cursor: pointer;
-    // display: flex;
-    // align-items: center;
-    // width: 240px;
-    // max-width: 100%;
-  }
-}
-.list_anime {
-  padding-top: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: space-around;
-  align-items: center;
-  position: relative;
-  z-index: 0;
-  cursor: pointer;
-
-  &-item {
-    width: 245px;
-    transition: 0.3s ease-in-out;
-    &:hover {
-      box-shadow: 0px -25px 20px -20px rgba(255, 110, 214, 0.45),
-        0px 25px 20px -20px rgba(216, 69, 169, 0.45);
-    }
-  }
-}
-.anime_name {
-  padding-top: 7px;
-  font-size: 18px;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-height: 7.8em;
-  cursor: pointer;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.837);
-  padding: 13px 10px 6px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  line-height: 28px;
-  width: 100%;
-}
-.animeinfo {
-  display: flex;
-  gap: 30px;
-  img {
-    width: 100%;
-    max-width: 250px;
-    height: auto;
-    max-height: 429px;
-  }
-  &-description {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    h2 {
-      font-size: 42px;
-      letter-spacing: -1px;
-      font-weight: 600;
-    }
-    h4 {
-      font-size: 16px;
-      color: rgb(168, 168, 168);
-      letter-spacing: 1px;
-    }
-    p {
-      font-size: 18px;
-      font-weight: 500;
-      span {
-        color: rgb(168, 168, 168);
-      }
-    }
-    button {
-      color: white;
-      margin-bottom: 7px;
-      padding: 8px;
-      border-radius: 4px;
-      background-color: rgba(128, 128, 128, 0.284);
-      width: fit-content;
-    }
-  }
-}
 .select {
   background-color: rgb(14, 11, 33);
   padding: 5px;
@@ -137,7 +39,4 @@
     border: 1px solid black;
     cursor: pointer;
   }
-}
-.player {
-  padding-top: 10px;
 }
