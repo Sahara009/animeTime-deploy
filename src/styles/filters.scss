@@ -1,6 +1,10 @@
 .filter-wrapper {
   display: flex;
   gap: 30px;
+
+  @media (max-width: 630px) {
+    display: block;
+  }
 }
 .filter-anime {
   max-width: 1100px;
@@ -8,15 +12,36 @@
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
+
+  @media (max-width: 850px) {
+    gap: 10px;
+    justify-content: space-around;
+  }
 }
 .filter-anime_card {
   width: 250px;
+
+  @media (max-width: 850px) {
+    width: 150px;
+  }
 }
 .filters {
   padding-top: 40px;
   color: white;
   max-width: 250px;
   min-width: 250px;
+
+  @media (max-width: 630px) {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  h4 {
+    color: gray;
+    font-size: 14px;
+    padding: 10px 0px;
+  }
+
   .slider {
     max-width: 500px;
     color: white !important;
@@ -25,6 +50,34 @@
     margin-top: 10px;
     font-size: 16px;
     color: white;
+  }
+  &-list-skeleton {
+    span {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      row-gap: 24px;
+
+      span {
+        width: 250px;
+        height: 357px;
+
+        @media (max-width: 850px) {
+          width: 150px;
+          height: 215px;
+        }
+
+        @media (max-width: 630px) {
+          width: 150px;
+          height: 215px;
+        }
+      }
+    }
+    @media (max-width: 850px) {
+      span {
+        justify-content: space-around;
+      }
+    }
   }
 }
 .genres {

@@ -1,10 +1,16 @@
 import { Route, Routes } from "react-router-dom";
-import { AnimeInfo, AnimeList, Homepage, Layout } from "./components";
+import { AnimeList, Layout } from "./components";
 import "react-loading-skeleton/dist/skeleton.css";
 import { SkeletonTheme } from "react-loading-skeleton";
-import { RandomPage } from "./components/RandomPage";
 import "./styles/root.scss";
-import { Filters } from "./components/Filters";
+import {
+  Homepage,
+  RandomPage,
+  AnimeInfo,
+  Filters,
+  LoginPage,
+  RegistrationPage,
+} from "./pages/index";
 
 export function App() {
   return (
@@ -18,6 +24,8 @@ export function App() {
               <Route path="/serials/" element={<AnimeList />} />
               <Route path="/random" element={<RandomPage />} />
               <Route path="/filters" element={<Filters />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/registration" element={<RegistrationPage />} />
             </Route>
           </Routes>
         </SkeletonTheme>

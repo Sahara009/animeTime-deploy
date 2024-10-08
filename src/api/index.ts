@@ -33,14 +33,15 @@ export const getTitleInfo = async (code: string) => {
     console.error("Error fetching title info:", error);
   }
 };
-export const getAnimeUpdates = async (pageNumber: number) => {
+export const getAnimeUpdates = async (pageNumber: number): Promise<List[]> => {
   try {
-    const response = await axiosUrl.get(
-      `title/updates?limit=15&page=${pageNumber}`
+    const response = await axios.get(
+      `https://api.anilibria.tv/v3/title/updates?limit=15&page=${pageNumber}`
     );
     return response.data.list as List[];
   } catch (error) {
     console.error("Error fetching list:", error);
+    return [];
   }
 };
 export const getRandomTitle = async () => {

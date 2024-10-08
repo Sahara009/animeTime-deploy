@@ -14,7 +14,7 @@ export const Input: React.FC<Props> = () => {
   const [animeList, setAnimeList] = useState<ListArray | undefined>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const location = useLocation();
-  const navigate = useNavigate(); // Используйте useNavigate
+  const navigate = useNavigate();
 
   const debouncedSearch = debounce(async (term: string) => {
     setLoading(true);

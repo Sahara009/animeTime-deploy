@@ -35,6 +35,20 @@
     column-gap: 13px;
     z-index: -1;
   }
+  .skeleton-list {
+    width: 245px;
+    height: 350px;
+
+    @media (max-width: 840px) {
+      max-width: 150px;
+      height: 215px;
+    }
+  }
+  @media (max-width: 840px) {
+    span {
+      justify-content: space-around;
+    }
+  }
 }
 .skeleton-home {
   span {

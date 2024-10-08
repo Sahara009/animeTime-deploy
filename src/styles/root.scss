@@ -64,3 +64,11 @@ body::-webkit-scrollbar {
     margin: 0px;
   }
 }
+.filters-input {
+  background-color: rgb(14, 11, 33);
+  border-radius: 9px;
+  input {
+    color: white;
+    font-size: 19px;
+  }
+}

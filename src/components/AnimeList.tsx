@@ -42,9 +42,9 @@ export const AnimeList: React.FC<Props> = () => {
       <div className="skeletons container">
         <Skeleton
           baseColor="#363737"
-          className="skeleton"
-          width={245}
-          height={350}
+          className="skeleton-list"
+          // width={245}
+          // height={350}
           count={15}
         />
       </div>

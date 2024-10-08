@@ -6,21 +6,23 @@ import { Modal } from "./Modal";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { Input } from "./Input";
 import { Footer } from "./Footer";
-// import { Input } from "./Input";
+import { useAuth } from "../hooks/use-auth";
+import { useDispatch } from "react-redux";
+import { removeUser } from "../store/slices/userSlice";
+import catAvatar from "../assets/cat-avatar-generator-svgrepo-com.svg";
 
-interface Props {
-  className?: string;
-}
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#E91E63", // Розовый цвет
+      main: "#E91E63",
     },
   },
 });
 
-export const Layout: React.FC<Props> = () => {
+export const Layout = () => {
   const [popup, setPopup] = useState(false);
+  const { isAuth } = useAuth();
+  const dispatch = useDispatch();
 
   const handlerModal = () => {
     setPopup(!popup);
@@ -47,6 +49,30 @@ export const Layout: React.FC<Props> = () => {
             <NavLink to={"/serials"}>Список</NavLink>
             <NavLink to={"/filters"}>Фильтрация</NavLink>
             <NavLink to={"/random"}>Случайное</NavLink>
+            {isAuth ? (
+              <>
+                <a href="#">
+                  <img
+                    style={{ width: 50, display: "flex", alignItems: "center" }}
+                    src={catAvatar}
+                    alt="avatar"
+                  />
+                </a>
+                <button
+                  style={{ color: "white" }}
+                  onClick={() => {
+                    dispatch(removeUser());
+                  }}
+                >
+                  Выйти
+                </button>
+              </>
+            ) : (
+              <>
+                <NavLink to={"/login"}>Войти</NavLink>
+                <NavLink to={"/registration"}>Регистрация</NavLink>
+              </>
+            )}
           </nav>
           {!popup ? (
             <MenuIcon className="menu-icon" onClick={() => handlerModal()} />
