@@ -11,6 +11,8 @@ import {
   LoginPage,
   RegistrationPage,
 } from "./pages/index";
+import { AccountPage } from "./pages/AccountPage";
+// import { FavoritesPage } from "./pages/FavoritesPage";
 
 export function App() {
   return (
@@ -26,6 +28,8 @@ export function App() {
               <Route path="/filters" element={<Filters />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/registration" element={<RegistrationPage />} />
+              <Route path="/account" element={<AccountPage />} />
+              {/* <Route path="/fovorite" element={<FavoritesPage />} /> */}
             </Route>
           </Routes>
         </SkeletonTheme>

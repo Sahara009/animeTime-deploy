@@ -44,6 +44,39 @@ export const getAnimeUpdates = async (pageNumber: number): Promise<List[]> => {
     return [];
   }
 };
+
+// const loadAnimeFromStorage = (pageNumber: number): List[] => {
+//   const savedAnime = localStorage.getItem(`animePage_${pageNumber}`);
+//   return savedAnime ? JSON.parse(savedAnime) : [];
+// };
+// // Сохраняем данные в localStorage
+// const saveAnimeToStorage = (pageNumber: number, animeList: List[]) => {
+//   localStorage.setItem(`animePage_${pageNumber}`, JSON.stringify(animeList));
+// };
+// export const getAnimeUpdates = async (pageNumber: number): Promise<List[]> => {
+//   try {
+//     // Проверяем, есть ли уже данные для данной страницы в localStorage
+//     const cachedAnime = loadAnimeFromStorage(pageNumber);
+//     if (cachedAnime.length > 0) {
+//       return cachedAnime;
+//     }
+
+//     // Если данных нет, делаем запрос к API
+//     const response = await axios.get(
+//       `https://api.anilibria.tv/v3/title/updates?limit=15&page=${pageNumber}`
+//     );
+//     const animeList = response.data.list as List[];
+
+//     // Сохраняем полученные данные в localStorage
+//     saveAnimeToStorage(pageNumber, animeList);
+
+//     return animeList;
+//   } catch (error) {
+//     console.error("Error fetching list:", error);
+//     return [];
+//   }
+// };
+
 export const getRandomTitle = async () => {
   try {
     const response = await axiosUrl.get(`title/random`);

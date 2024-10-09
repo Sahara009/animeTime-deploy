@@ -40,13 +40,7 @@ export const AnimeList: React.FC<Props> = () => {
   if (list.length === 0) {
     return (
       <div className="skeletons container">
-        <Skeleton
-          baseColor="#363737"
-          className="skeleton-list"
-          // width={245}
-          // height={350}
-          count={15}
-        />
+        <Skeleton baseColor="#363737" className="skeleton-list" count={15} />
       </div>
     );
   }

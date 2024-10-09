@@ -1,7 +1,9 @@
 import { X } from "lucide-react";
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import lupa from "../assets/icons8-лупа.svg";
+
+import { useAuth } from "../hooks/use-auth";
 
 interface Props {
   className?: string;
@@ -11,6 +13,7 @@ interface Props {
 export const Modal: React.FC<Props> = ({ handlerModal }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+  const { isAuth } = useAuth();
 
   const handleMoreClick = () => {
     navigate(`/filters?searchTerm=${encodeURIComponent(searchTerm)}`);
@@ -36,6 +39,16 @@ export const Modal: React.FC<Props> = ({ handlerModal }) => {
           />
         </div>
 
+        {isAuth ? (
+          <>
+            <Link to={"/account"}>Аккаунт</Link>
+          </>
+        ) : (
+          <>
+            <NavLink to={"/login"}>Войти</NavLink>
+            <NavLink to={"/registration"}>Регистрация</NavLink>
+          </>
+        )}
         <NavLink to={"/serials"}>Список</NavLink>
         <NavLink to={"/filters"}>Фильтры</NavLink>
         <NavLink to={"/random"}>Рандомное</NavLink>

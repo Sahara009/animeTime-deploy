@@ -1,0 +1,47 @@
+.account-wrapper {
+  padding: 30px 5%;
+  h2 {
+    margin-bottom: 30px;
+    font-size: 34px;
+    font-weight: 600;
+  }
+}
+.favorites {
+  &-list {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.avatar {
+  padding: 2px;
+  border: 2px solid #e91e63;
+  border-radius: 40px;
+}
+.remove-account {
+  border: 2px solid gray;
+  color: gray;
+  padding: 5px 10px;
+  margin: 50px 5% 0px;
+  border-radius: 3px;
+}
+.remove-favorite-button {
+  color: gray;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 5px;
+  transition: 0.2s ease-in-out;
+  font-size: 14px;
+  font-weight: bold;
+
+  &:hover {
+    color: #e91e63;
+    background-color: rgba(128, 128, 128, 0.247);
+    border: 1px solid #e91e63;
+  }
+}

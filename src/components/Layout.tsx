@@ -7,8 +7,7 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import { Input } from "./Input";
 import { Footer } from "./Footer";
 import { useAuth } from "../hooks/use-auth";
-import { useDispatch } from "react-redux";
-import { removeUser } from "../store/slices/userSlice";
+
 import catAvatar from "../assets/cat-avatar-generator-svgrepo-com.svg";
 
 const theme = createTheme({
@@ -22,7 +21,6 @@ const theme = createTheme({
 export const Layout = () => {
   const [popup, setPopup] = useState(false);
   const { isAuth } = useAuth();
-  const dispatch = useDispatch();
 
   const handlerModal = () => {
     setPopup(!popup);
@@ -51,21 +49,14 @@ export const Layout = () => {
             <NavLink to={"/random"}>Случайное</NavLink>
             {isAuth ? (
               <>
-                <a href="#">
+                <Link to={"/account"}>
                   <img
+                    className="avatar"
                     style={{ width: 50, display: "flex", alignItems: "center" }}
                     src={catAvatar}
                     alt="avatar"
                   />
-                </a>
-                <button
-                  style={{ color: "white" }}
-                  onClick={() => {
-                    dispatch(removeUser());
-                  }}
-                >
-                  Выйти
-                </button>
+                </Link>
               </>
             ) : (
               <>
