@@ -23,6 +23,7 @@ export const RangeYear: React.FC<RangeYearProps> = ({ onRangeChange }) => {
   }, []);
 
   const handleSliderChange = (event: Event, newValue: number | number[]) => {
+    console.log(event);
     const selectedYears = newValue as number[];
     setSelectedRange(selectedYears);
 

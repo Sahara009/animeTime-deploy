@@ -27,12 +27,7 @@ export const AnimeCard: React.FC<Props> = ({
     <div key={item?.id} style={{ position: "relative" }} className={className}>
       <Link to={`/serials/${item?.code}`}>
         {!imageLoaded && (
-          <Skeleton
-            baseColor="#363737"
-            className="skeleton-placeholder"
-            width={245}
-            height={350}
-          />
+          <Skeleton baseColor="#363737" className="skeleton-placeholder" />
         )}
         <img
           className="posters-item"

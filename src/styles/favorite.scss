@@ -1,7 +1,7 @@
 .account-wrapper {
   padding: 30px 5%;
   h2 {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-size: 34px;
     font-weight: 600;
   }
@@ -12,12 +12,16 @@
     gap: 20px;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+
+    justify-content: flex-start;
+
+    & > *:only-child {
+      margin-left: 0;
+    }
   }
 }
 .avatar {
-  padding: 2px;
-  border: 2px solid #e91e63;
+  border: 3px solid #e91e63;
   border-radius: 40px;
 }
 .remove-account {

@@ -32,7 +32,7 @@ export const RegistrationPage = () => {
 
   return (
     <div>
-      <Form title="Зарегистрироваться" handleSubmit={handleRegistration} />
+      <Form title="Создать аккаунт" handleSubmit={handleRegistration} />
     </div>
   );
 };

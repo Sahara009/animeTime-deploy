@@ -28,6 +28,7 @@ export const getTitleInfo = async (code: string) => {
     const response = await axiosUrl.get(
       `title?code=${code}&playlist_type=array`
     );
+    console.log(response.data);
     return response.data as List;
   } catch (error) {
     console.error("Error fetching title info:", error);

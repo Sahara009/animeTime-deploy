@@ -22,6 +22,7 @@ export const Filters: React.FC<Props> = () => {
   const [searchTerm, setSearchTerm] = useState<string>(""); // Состояние для текстового фильтра
   const pageNumber = 1;
   const [filtersApplied, setFiltersApplied] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
 
   const location = useLocation(); // Используйте useLocation
 
@@ -53,6 +54,8 @@ export const Filters: React.FC<Props> = () => {
     }
 
     setLoading(true);
+    setHasSearched(true); // Устанавливаем hasSearched в true при начале поиска
+
     console.log("Searching with:", {
       genres,
       seasonCode,
@@ -78,7 +81,7 @@ export const Filters: React.FC<Props> = () => {
       setFiltersApplied(true);
       debouncedFilter();
     }
-  }, [genres, seasonCode, selectedTypes, searchTerm]); // Добавляем searchTerm в зависимости
+  }, [genres, seasonCode, selectedTypes, searchTerm]);
 
   const handleGenresChangeLocal = (selectedGenres: string) => {
     setGenres(selectedGenres);
@@ -120,7 +123,7 @@ export const Filters: React.FC<Props> = () => {
           <div className="filters-list-skeleton">
             <Skeleton baseColor="#363737" className="skeleton" count={15} />
           </div>
-        ) : filterAnime.length === 0 ? (
+        ) : hasSearched && filterAnime.length === 0 ? ( // Проверка hasSearched
           <h1>Ничего не найдено :(</h1>
         ) : (
           filterAnime.map((anime) => (

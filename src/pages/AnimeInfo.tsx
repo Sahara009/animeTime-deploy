@@ -5,7 +5,6 @@ import { List } from "../types/schedule.type";
 import ReactPlayer from "react-player";
 import {
   FormControl,
-  InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
@@ -23,6 +22,12 @@ export const AnimeInfo: React.FC<Props> = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [activeEpisode, setActiveEpisode] = useState<string>("1");
   const location = useLocation();
+
+  useEffect(() => {
+    createTitle();
+
+    window.scrollTo(0, 0);
+  }, [location]);
 
   const createTitle = async () => {
     setLoading(true);
@@ -49,12 +54,10 @@ export const AnimeInfo: React.FC<Props> = () => {
     <div className="animeInfo-wrapper container" style={{ paddingTop: 40 }}>
       <AnimeDescription title={title} />
       <FormControl style={{ marginTop: 20 }}>
-        <InputLabel id="episode-select-label">Select Episode</InputLabel>
         <Select
           labelId="episode-select-label"
           value={activeEpisode}
           onChange={handleChange}
-          label="Select Episode"
           className="customSelect"
           MenuProps={{
             PaperProps: {
@@ -68,7 +71,7 @@ export const AnimeInfo: React.FC<Props> = () => {
               value={episode.episode}
               className="customMenuItem"
             >
-              <p>Episode {episode.episode}</p>
+              <p>Серия {episode.episode}</p>
             </MenuItem>
           ))}
         </Select>

@@ -23,6 +23,10 @@
 
   @media (max-width: 850px) {
     width: 150px;
+    // height: 300px;
+    span {
+      height: 200px;
+    }
   }
 }
 .filters {

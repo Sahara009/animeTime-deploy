@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import "../styles/layout.scss";
 import { MenuIcon } from "lucide-react";
@@ -7,8 +7,10 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import { Input } from "./Input";
 import { Footer } from "./Footer";
 import { useAuth } from "../hooks/use-auth";
-
+import { RootState } from "../store";
 import catAvatar from "../assets/cat-avatar-generator-svgrepo-com.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { setAvatar } from "../store/slices/userSlice";
 
 const theme = createTheme({
   palette: {
@@ -19,6 +21,17 @@ const theme = createTheme({
 });
 
 export const Layout = () => {
+  const dispatch = useDispatch();
+  const selectedAvatar = useSelector(
+    (state: RootState) => state.user.selectedAvatar
+  );
+
+  useEffect(() => {
+    const storedAvatar = localStorage.getItem("userAvatar");
+    if (storedAvatar) {
+      dispatch(setAvatar(storedAvatar));
+    }
+  }, [dispatch]);
   const [popup, setPopup] = useState(false);
   const { isAuth } = useAuth();
 
@@ -53,7 +66,7 @@ export const Layout = () => {
                   <img
                     className="avatar"
                     style={{ width: 50, display: "flex", alignItems: "center" }}
-                    src={catAvatar}
+                    src={selectedAvatar || catAvatar}
                     alt="avatar"
                   />
                 </Link>

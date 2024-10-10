@@ -14,11 +14,17 @@ interface Props {
 export const AnimeDescription: React.FC<Props> = ({ title }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state: RootState) => state.anime.favorites);
+  const user = useSelector((state: RootState) => state.user);
   const [showDescription, setShowDescription] = useState<boolean>(false);
 
   const isFavorite = favorites.some((anime) => anime.id === title?.id);
 
   const handleClick = () => {
+    if (!user.token) {
+      alert("Вам нужно войти в аккаунт, чтобы добавлять в избранное.");
+      return;
+    }
+
     if (isFavorite && title) {
       dispatch(removeFavorite(title.id));
     } else if (title) {
@@ -35,6 +41,7 @@ export const AnimeDescription: React.FC<Props> = ({ title }) => {
       />
       <div className="animeinfo-description">
         <h2>{title?.names.ru}</h2>
+        <h5 style={{ color: "gray" }}>{title?.names.en}</h5>
         <h4>
           {title?.description
             ? showDescription
@@ -68,6 +75,7 @@ export const AnimeDescription: React.FC<Props> = ({ title }) => {
             src={inFavorite}
             alt="In Favorite"
             onClick={handleClick}
+            className="favorite-button"
           />
         ) : (
           <img
@@ -75,6 +83,7 @@ export const AnimeDescription: React.FC<Props> = ({ title }) => {
             src={favorite}
             alt="Favorite"
             onClick={handleClick}
+            className="favorite-button"
           />
         )}
       </div>

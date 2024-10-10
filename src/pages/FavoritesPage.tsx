@@ -34,7 +34,7 @@ export const FavoritesPage: React.FC<Props> = () => {
           ))}
         </div>
       ) : (
-        <p>Избранных аниме пока нет.</p>
+        <p style={{ color: "gray" }}>Избранных аниме пока нет.</p>
       )}
     </div>
   );

@@ -11,6 +11,7 @@ export interface UserState {
   email: string | null;
   token: string | null;
   id: string | null;
+  selectedAvatar: null;
 }
 
 const initialState: UserState = loadUserFromStorage();
@@ -39,8 +40,11 @@ const userSlice = createSlice({
       state.id = null;
       localStorage.removeItem("user");
     },
+    setAvatar(state, action) {
+      state.selectedAvatar = action.payload;
+    },
   },
 });
 
-export const { setUser, removeUser } = userSlice.actions;
+export const { setUser, removeUser, setAvatar } = userSlice.actions;
 export default userSlice.reducer;

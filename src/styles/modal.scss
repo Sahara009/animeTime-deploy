@@ -37,6 +37,14 @@
     font-weight: 700;
     color: white;
   }
+
+  .close {
+    width: 35px;
+    height: 35px;
+  }
+  @media (max-width: 440px) {
+    width: 80%;
+  }
   border: 2px solid rgba(255, 255, 255, 0.155);
   border-radius: 9px;
   position: absolute;
@@ -48,14 +56,6 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   animation-name: animatetop;
   animation-duration: 0.4s;
-
-  .close {
-    width: 35px;
-    height: 35px;
-  }
-  @media (max-width: 440px) {
-    width: 80%;
-  }
 }
 @keyframes animatetop {
   from {
