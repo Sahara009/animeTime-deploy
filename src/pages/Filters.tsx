@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, TextField, debounce } from "@mui/material";
 import { getAnimeUpdates, searchFilterAnime } from "../api";
 import { List } from "../types/schedule.type";
-import { useLocation } from "react-router-dom"; // Импортируйте useLocation
+import { useLocation } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import GenreSelect from "../components/Genres";
 import SeasonsSelect from "../components/Seasons";
@@ -19,12 +19,11 @@ export const Filters: React.FC<Props> = () => {
   const [genres, setGenres] = useState<string>("");
   const [seasonCode, setSeasonCode] = useState<string>("");
   const [selectedTypes, setSelectedTypes] = useState<number[]>([]);
-  const [searchTerm, setSearchTerm] = useState<string>(""); // Состояние для текстового фильтра
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const pageNumber = 1;
   const [filtersApplied, setFiltersApplied] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
-
-  const location = useLocation(); // Используйте useLocation
+  const location = useLocation();
 
   const loadUpdates = async () => {
     setLoading(true);
@@ -39,7 +38,6 @@ export const Filters: React.FC<Props> = () => {
     }
   }, [pageNumber, filtersApplied]);
 
-  // Извлечение searchTerm из URL
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const term = params.get("searchTerm");
@@ -54,7 +52,7 @@ export const Filters: React.FC<Props> = () => {
     }
 
     setLoading(true);
-    setHasSearched(true); // Устанавливаем hasSearched в true при начале поиска
+    setHasSearched(true);
 
     console.log("Searching with:", {
       genres,
@@ -69,8 +67,6 @@ export const Filters: React.FC<Props> = () => {
       seasonCode,
       selectedTypes.join(",")
     );
-
-    console.log("Filtered Anime:", filteredAnime);
 
     setFilterAnime(filteredAnime || []);
     setLoading(false);
@@ -121,9 +117,13 @@ export const Filters: React.FC<Props> = () => {
       <div className="filter-anime">
         {loading ? (
           <div className="filters-list-skeleton">
-            <Skeleton baseColor="#363737" className="skeleton" count={15} />
+            <Skeleton
+              baseColor="#363737"
+              className="skeleton-list"
+              count={15}
+            />
           </div>
-        ) : hasSearched && filterAnime.length === 0 ? ( // Проверка hasSearched
+        ) : hasSearched && filterAnime.length === 0 ? (
           <h1>Ничего не найдено :(</h1>
         ) : (
           filterAnime.map((anime) => (

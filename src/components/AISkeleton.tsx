@@ -7,50 +7,74 @@ interface Props {
 
 export const AISkeleton: React.FC<Props> = () => {
   return (
-    <div className="animeInfo-wrapper container">
-      <div className="  animeInfo_skeleton" style={{ paddingTop: 40 }}>
-        <div style={{ width: 250 }}>
-          <Skeleton baseColor="#363737" className="animeInfo_skeleton-poster" />
+    <>
+      <div className="animeinfo ">
+        <div className="animeInfo-skeleton_poster">
+          <Skeleton baseColor="#363737" width={250} height={350} />
         </div>
 
-        <div className="animeInfo_skeleton-title">
+        <div className="animeinfo-description">
           <Skeleton
+            className="animeInfo-skeleton_titleRu"
             baseColor="#363737"
-            style={{ marginBottom: 10 }}
-            height={50}
+            height={42}
+            width="53vw"
+          />
+          <Skeleton
+            className="animeInfo-skeleton_titleEn"
+            baseColor="#363737"
+            height={20}
+            width="15vw"
+          />
+          <Skeleton
+            className="animeInfo-skeleton_status"
+            baseColor="#363737"
+            height="7vh"
+            width="100%"
           />
           <Skeleton
             baseColor="#363737"
-            style={{ marginBottom: 5 }}
-            className="animeInfo_skeleton-desc"
-          />
-          <Skeleton
-            baseColor="#363737"
-            style={{ marginBottom: 15 }}
+            height={33}
             width={110}
-            height={35}
+            style={{ marginBottom: 8 }}
+            className="animeInfo-skeleton_status"
+          />
+
+          <Skeleton
+            baseColor="#363737"
+            height={20}
+            width="20%"
+            className="animeInfo-skeleton_status"
           />
           <Skeleton
             baseColor="#363737"
-            style={{ marginBottom: 5 }}
-            width={250}
-            height={25}
-            count={3}
+            height={18}
+            width="40%"
+            style={{ marginBottom: 3 }}
+            className="animeInfo-skeleton_status"
           />
-          <Skeleton baseColor="#363737" width={250} height={25} />
+          <Skeleton baseColor="#363737" height={18} width="27%" />
+          <Skeleton
+            baseColor="#363737"
+            height={18}
+            width="30%"
+            style={{ marginBottom: 10 }}
+          />
+          <Skeleton baseColor="#363737" height={35} width={30} />
         </div>
       </div>
       <Skeleton
         baseColor="#363737"
-        style={{ marginTop: 20 }}
-        width={135}
         height={55}
+        width={113}
+        style={{ marginTop: 30, marginBottom: -20 }}
       />
       <Skeleton
         baseColor="#363737"
-        style={{ marginTop: 10 }}
-        className="player_skeleton"
+        height="70vh"
+        width="100%"
+        style={{ marginTop: 30 }}
       />
-    </div>
+    </>
   );
 };

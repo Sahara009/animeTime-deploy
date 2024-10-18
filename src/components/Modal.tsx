@@ -49,8 +49,8 @@ export const Modal: React.FC<Props> = ({ handlerModal }) => {
             <NavLink to={"/registration"}>Регистрация</NavLink>
           </>
         )}
-        <NavLink to={"/serials"}>Список</NavLink>
-        <NavLink to={"/filters"}>Фильтры</NavLink>
+        <NavLink to={"/shedules"}>Рассписание</NavLink>
+        <NavLink to={"/filters"}>Каталог</NavLink>
         <NavLink to={"/random"}>Рандомное</NavLink>
       </nav>
     </div>

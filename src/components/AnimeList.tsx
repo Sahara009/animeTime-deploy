@@ -46,8 +46,9 @@ export const AnimeList: React.FC<Props> = () => {
   }
 
   return (
-    <div className="list">
-      <nav className="container">
+    <div className=" container list">
+      <h1 className=" animeList-title">Сейчас популярно</h1>
+      <nav>
         <InfiniteScroll
           dataLength={list.length}
           next={fetchMoreData}

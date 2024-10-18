@@ -29,6 +29,7 @@ export const getTitleInfo = async (code: string) => {
       `title?code=${code}&playlist_type=array`
     );
     console.log(response.data);
+    console.log(response.data.rating);
     return response.data as List;
   } catch (error) {
     console.error("Error fetching title info:", error);
@@ -45,38 +46,17 @@ export const getAnimeUpdates = async (pageNumber: number): Promise<List[]> => {
     return [];
   }
 };
+export const getFranchiseList = async (): Promise<List[]> => {
+  try {
+    const response = await axios.get("https://api.anilibria.tv/v3/feed?");
 
-// const loadAnimeFromStorage = (pageNumber: number): List[] => {
-//   const savedAnime = localStorage.getItem(`animePage_${pageNumber}`);
-//   return savedAnime ? JSON.parse(savedAnime) : [];
-// };
-// // Сохраняем данные в localStorage
-// const saveAnimeToStorage = (pageNumber: number, animeList: List[]) => {
-//   localStorage.setItem(`animePage_${pageNumber}`, JSON.stringify(animeList));
-// };
-// export const getAnimeUpdates = async (pageNumber: number): Promise<List[]> => {
-//   try {
-//     // Проверяем, есть ли уже данные для данной страницы в localStorage
-//     const cachedAnime = loadAnimeFromStorage(pageNumber);
-//     if (cachedAnime.length > 0) {
-//       return cachedAnime;
-//     }
-
-//     // Если данных нет, делаем запрос к API
-//     const response = await axios.get(
-//       `https://api.anilibria.tv/v3/title/updates?limit=15&page=${pageNumber}`
-//     );
-//     const animeList = response.data.list as List[];
-
-//     // Сохраняем полученные данные в localStorage
-//     saveAnimeToStorage(pageNumber, animeList);
-
-//     return animeList;
-//   } catch (error) {
-//     console.error("Error fetching list:", error);
-//     return [];
-//   }
-// };
+    console.log(response);
+    return response.data.list;
+  } catch (error) {
+    console.error("Error fetching franchise list:", error);
+    return [];
+  }
+};
 
 export const getRandomTitle = async () => {
   try {

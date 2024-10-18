@@ -1,7 +1,6 @@
 .input-wrapper {
   position: relative;
 }
-
 .search-icon {
   position: absolute;
   right: 10px;
@@ -9,7 +8,6 @@
   transform: translateY(-50%);
   cursor: pointer;
 }
-
 .modal-input {
   background-color: rgb(9, 7, 22);
   padding: 10px 40px 10px 5px;
@@ -20,12 +18,10 @@
   font-size: 14px;
   outline: none;
 }
-
 .modal-input:focus {
   outline: none;
   box-shadow: none;
 }
-
 .modal-header {
   color: white;
   padding: 3px 8px 0px;

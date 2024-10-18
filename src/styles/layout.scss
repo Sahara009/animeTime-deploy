@@ -4,10 +4,10 @@ $title-color: #e91e63;
   font-size: 34px;
   font-weight: 500;
   transition: 0.2s ease-in-out;
-}
-.title:hover {
-  color: $title-color;
-  text-shadow: 0 0 10px #e91e63;
+  &:hover {
+    color: $title-color;
+    text-shadow: 0 0 10px #e91e63;
+  }
 }
 .header {
   padding: 15px 0;
@@ -30,12 +30,6 @@ $title-color: #e91e63;
 
     a:hover {
       color: $title-color;
-    }
-
-    @media (max-width: 970px) {
-      width: 0;
-      height: 0;
-      overflow: hidden;
     }
   }
   &_modal {
@@ -152,5 +146,12 @@ $title-color: #e91e63;
     p {
       font-size: 22px;
     }
+  }
+}
+@media (max-width: 970px) {
+  .header_list {
+    width: 0;
+    height: 0;
+    overflow: hidden;
   }
 }

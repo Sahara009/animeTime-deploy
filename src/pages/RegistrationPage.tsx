@@ -24,6 +24,7 @@ export const RegistrationPage = () => {
           );
           navigate("/");
         });
+        console.log(user);
       })
       .catch((error) => {
         console.error("Ошибка регистрации:", error);

@@ -6,10 +6,10 @@ import { Modal } from "./Modal";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { Input } from "./Input";
 import { Footer } from "./Footer";
-import { useAuth } from "../hooks/use-auth";
-import { RootState } from "../store";
-import catAvatar from "../assets/cat-avatar-generator-svgrepo-com.svg";
-import { useDispatch, useSelector } from "react-redux";
+// import { useAuth } from "../hooks/use-auth";
+// import { RootState } from "../store";
+// import catAvatar from "../assets/cat-avatar-generator-svgrepo-com.svg";
+import { useDispatch } from "react-redux";
 import { setAvatar } from "../store/slices/userSlice";
 
 const theme = createTheme({
@@ -22,9 +22,9 @@ const theme = createTheme({
 
 export const Layout = () => {
   const dispatch = useDispatch();
-  const selectedAvatar = useSelector(
-    (state: RootState) => state.user.selectedAvatar
-  );
+  // const selectedAvatar = useSelector(
+  //   (state: RootState) => state.user.selectedAvatar
+  // );
 
   useEffect(() => {
     const storedAvatar = localStorage.getItem("userAvatar");
@@ -33,7 +33,7 @@ export const Layout = () => {
     }
   }, [dispatch]);
   const [popup, setPopup] = useState(false);
-  const { isAuth } = useAuth();
+  // const { isAuth } = useAuth();
 
   const handlerModal = () => {
     setPopup(!popup);
@@ -57,10 +57,12 @@ export const Layout = () => {
           </div>
           <Input />
           <nav className="header_list">
-            <NavLink to={"/serials"}>Список</NavLink>
-            <NavLink to={"/filters"}>Фильтрация</NavLink>
+            {/* <NavLink to={"/news"}>Новости</NavLink> */}
+            <NavLink to={"/filters"}>Каталог</NavLink>
             <NavLink to={"/random"}>Случайное</NavLink>
-            {isAuth ? (
+            <NavLink to={"/shedules"}>Рассписание</NavLink>
+            <NavLink to={"/collections"}>Коллекции</NavLink>
+            {/* {isAuth ? (
               <>
                 <Link to={"/account"}>
                   <img
@@ -76,7 +78,7 @@ export const Layout = () => {
                 <NavLink to={"/login"}>Войти</NavLink>
                 <NavLink to={"/registration"}>Регистрация</NavLink>
               </>
-            )}
+            )} */}
           </nav>
           {!popup ? (
             <MenuIcon className="menu-icon" onClick={() => handlerModal()} />

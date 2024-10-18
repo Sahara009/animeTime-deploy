@@ -1,16 +1,14 @@
-// Переменные для цветов
 $primary-color: #ff4081;
 $secondary-color: #ff79b0;
 $background-gradient: linear-gradient(135deg, #e09, #d0e);
 $white-color: #fff;
 
-// Основные стили формы
 .form-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 70vh;
-  //   background: $background-gradient;
+
   position: relative;
   font-family: "Comic Sans MS", cursive, sans-serif;
 }
@@ -41,7 +39,6 @@ $white-color: #fff;
   margin-bottom: 20px;
 }
 
-// Стили для полей ввода
 .form-input {
   width: 100%;
   padding: 12px;
@@ -58,7 +55,6 @@ $white-color: #fff;
   }
 }
 
-// Кнопка отправки формы
 .submit-button {
   background-color: $primary-color;
   color: $white-color;
@@ -74,12 +70,10 @@ $white-color: #fff;
   }
 }
 
-// Стили для стикеров
 .sticker {
   position: absolute;
   width: 100px;
   height: auto;
-  //   opacity: 0.9;
 
   &-1 {
     top: -40px;
@@ -94,7 +88,6 @@ $white-color: #fff;
   }
 }
 
-// Адаптивность для меньших экранов
 @media (max-width: 768px) {
   .sticker {
     width: 70px;

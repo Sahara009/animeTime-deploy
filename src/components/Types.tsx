@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent } from "react";
 
 interface TypeSelectProps {
-  onTypeChange: (types: number[]) => void; // Передаем индексы как числа
+  onTypeChange: (types: number[]) => void;
 }
 
 const typesList: string[] = ["Фильм", "TV", "OVA", "ONA", "Спешил", "WEB"];

@@ -25,10 +25,14 @@ const saveFavoritesToLocalStorage = (favorites: List[]) => {
 
 export interface AnimeState {
   favorites: List[];
+  watched: {
+    [key: string]: { episode: string; time: number; anime: List }; // Добавляем поле anime
+  };
 }
 
 const initialState: AnimeState = {
   favorites: loadFavoritesFromLocalStorage(),
+  watched: {},
 };
 
 export const animeSlice = createSlice({
@@ -50,8 +54,21 @@ export const animeSlice = createSlice({
       );
       saveFavoritesToLocalStorage(state.favorites);
     },
+    saveEpisode: (state, action) => {
+      const { code, episode, time, animeData } = action.payload;
+
+      if (animeData) {
+        state.watched[code] = { episode, time, anime: animeData };
+
+        const watchedAnime = Object.values(state.watched)
+          .filter((value) => value.time > 0)
+          .map((value) => JSON.parse(JSON.stringify(value.anime)));
+
+        localStorage.setItem("watchedAnime", JSON.stringify(watchedAnime));
+      }
+    },
   },
 });
 
-export const { addFavorite, removeFavorite } = animeSlice.actions;
+export const { addFavorite, removeFavorite, saveEpisode } = animeSlice.actions;
 export default animeSlice.reducer;

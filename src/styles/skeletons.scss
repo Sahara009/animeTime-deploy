@@ -37,8 +37,12 @@
   }
   .skeleton-list {
     width: 245px;
-    height: 350px;
+    height: 325px;
 
+    @media (max-width: 650px) {
+      gap: 10px;
+      row-gap: 15px;
+    }
     @media (max-width: 840px) {
       max-width: 150px;
       height: 215px;
@@ -86,5 +90,11 @@
   justify-content: center;
 }
 .skeleton-placeholder {
-  height: 350px;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+}
+.slogan-skeleton {
+  @media (max-width: 990px) {
+    height: 50px;
+  }
 }
