@@ -20,7 +20,7 @@ import { useDispatch } from "react-redux";
 interface Props {
   className?: string;
   toggleBackgroundDim: () => void;
-  isBackgroundDimmed: boolean; // Добавьте это
+  isBackgroundDimmed: boolean;
 }
 
 export const AnimeInfo: React.FC<Props> = ({
@@ -44,14 +44,37 @@ export const AnimeInfo: React.FC<Props> = ({
 
   const createTitle = async () => {
     setLoading(true);
-    if (code) {
-      const data = await getTitleInfo(code);
-      setTitle(data);
-      await fetchRecommendations(data?.genres?.join(","));
+    const cachedData = localStorage.getItem(`anime-${code}`);
+    if (cachedData) {
+      const parsedData = JSON.parse(cachedData);
+      setTitle(parsedData.title);
+      setRecommendations(parsedData.recommendations);
       setLoading(false);
     } else {
-      setLoading(false);
-      console.log("ошибка запроса");
+      if (code) {
+        try {
+          const [titleData, recommendedAnime] = await Promise.all([
+            getTitleInfo(code),
+            fetchRecommendations(),
+          ]);
+          setTitle(titleData);
+          setRecommendations(recommendedAnime?.slice(0, 10) || []);
+          localStorage.setItem(
+            `anime-${code}`,
+            JSON.stringify({
+              title: titleData,
+              recommendations: recommendedAnime,
+            })
+          );
+        } catch (error) {
+          console.error("Ошибка при загрузке данных:", error);
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        setLoading(false);
+        console.log("Ошибка запроса");
+      }
     }
   };
 
@@ -59,11 +82,17 @@ export const AnimeInfo: React.FC<Props> = ({
     setActiveEpisode(event.target.value);
   };
 
-  const fetchRecommendations = async (genres: string | undefined) => {
-    if (genres) {
-      const recommendedAnime = await searchFilterAnime("", genres, "", "");
-      setRecommendations(recommendedAnime?.slice(0, 10) || []);
+  const fetchRecommendations = async () => {
+    if (title?.genres) {
+      const recommendedAnime = await searchFilterAnime(
+        "",
+        title.genres.join(","),
+        "",
+        ""
+      );
+      return recommendedAnime;
     }
+    return [];
   };
 
   useEffect(() => {

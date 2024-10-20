@@ -3,21 +3,18 @@ import { AnimeCard } from "../components";
 
 export const LastViewed = () => {
   const [watchedAnime, setWatchedAnime] = useState([]);
+  console.log(watchedAnime);
   const animeListRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const savedWatchedAnime = localStorage.getItem("watchedAnime");
-
     if (savedWatchedAnime) {
       try {
         const parsedAnime = JSON.parse(savedWatchedAnime);
-
         setWatchedAnime(parsedAnime);
       } catch (error) {
         console.error("Ошибка парсинга данных из localStorage:", error);
       }
-    } else {
-      console.warn("Нет данных в localStorage.");
     }
   }, []);
 
