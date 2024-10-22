@@ -98,3 +98,23 @@
     height: 50px;
   }
 }
+@media (max-width: 580px) {
+  .animeInfo-skeleton_poster {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .animeInfo-skeleton_titleRu {
+    margin: 0 auto !important;
+    display: block;
+    height: 25px !important;
+    margin-bottom: -8px !important;
+  }
+  .animeInfo-skeleton_titleEn {
+    width: 50vw !important;
+  }
+  .animeInfo-skeleton_status {
+    width: 80vw !important;
+    margin: 0 !important;
+    height: 25px !important;
+  }
+}

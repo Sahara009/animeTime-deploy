@@ -14,16 +14,16 @@ interface Props {
 export const AnimeDescription: React.FC<Props> = ({ title }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state: RootState) => state.anime.favorites);
-  const user = useSelector((state: RootState) => state.user);
+  // const user = useSelector((state: RootState) => state.user);
   const [showDescription, setShowDescription] = useState<boolean>(false);
 
   const isFavorite = favorites.some((anime) => anime.id === title?.id);
 
   const handleClick = () => {
-    if (!user.token) {
-      alert("Вам нужно войти в аккаунт, чтобы добавлять в избранное.");
-      return;
-    }
+    // if (!user.token) {
+    //   alert("Вам нужно войти в аккаунт, чтобы добавлять в избранное.");
+    //   return;
+    // }
 
     if (isFavorite && title) {
       dispatch(removeFavorite(title.id));

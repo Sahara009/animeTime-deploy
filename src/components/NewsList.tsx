@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import Skeleton from "react-loading-skeleton";
 
 interface Youtube {
   comments: number;
@@ -46,8 +47,12 @@ export const NewsList: React.FC<Props> = () => {
     createList();
   }, []);
 
-  if (list.length === 0) {
-    return <></>;
+  if (list.length !== 0) {
+    return (
+      <div>
+        <Skeleton className="list_franchise" count={3} />
+      </div>
+    );
   }
 
   const youtubeList = list.filter((item) => item.youtube);

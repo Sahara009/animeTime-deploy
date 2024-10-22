@@ -164,7 +164,24 @@
   height: 0;
   overflow: hidden;
 }
+.backPost {
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+  mask-image: linear-gradient(to bottom, #0000002b, transparent);
+  transition: 0.3s ease-in-out;
+  bottom: -80%;
 
+  @media (max-width: 805px) {
+    bottom: -30%;
+  }
+  @media (max-width: 590px) {
+    bottom: -20%;
+  }
+  @media (max-width: 480px) {
+    bottom: 10%;
+  }
+}
 @media (max-width: 1000px) {
   .hidden-desc {
     width: 100%;
@@ -195,6 +212,7 @@
     }
   }
 }
+
 @media (max-width: 580px) {
   .animeinfo {
     display: block;
@@ -210,86 +228,5 @@
     h2 {
       text-align: center;
     }
-  }
-  .animeInfo-skeleton_poster {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  .animeInfo-skeleton_titleRu {
-    margin: 0 auto !important;
-    display: block;
-    height: 25px !important;
-    margin-bottom: -8px !important;
-  }
-  .animeInfo-skeleton_titleEn {
-    width: 50vw !important;
-  }
-  .animeInfo-skeleton_status {
-    width: 80vw !important;
-    margin: 0 !important;
-    height: 25px !important;
-  }
-}
-.backPost {
-  position: fixed;
-  z-index: -1;
-  width: 100%;
-  mask-image: linear-gradient(to bottom, #0000002b, transparent);
-  transition: 0.3s ease-in-out;
-  bottom: -80%;
-
-  @media (max-width: 805px) {
-    bottom: -30%;
-  }
-  @media (max-width: 590px) {
-    bottom: -20%;
-  }
-  @media (max-width: 480px) {
-    bottom: 10%;
-  }
-}
-.list_franchise {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  grid-gap: 1rem;
-}
-.list_franchise-item {
-  border-radius: 8px;
-  overflow: hidden;
-}
-@media (min-width: 680px) {
-  .list_franchise {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media (max-width: 680px) {
-  .list_franchise {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .list_anime {
-    gap: 10px;
-    row-gap: 15px;
-  }
-}
-.list_franchise-item {
-  img {
-    mask-image: linear-gradient(to bottom, #000, transparent);
-  }
-  position: relative;
-  background-size: cover;
-  border: 1px solid rgba(0, 0, 0, 0.386);
-}
-
-.list_franchise-item h3 {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  color: white;
-
-  font-size: 1.5vw;
-  font-weight: 500;
-
-  @media (max-width: 630px) {
-    font-size: 2.5vw;
   }
 }

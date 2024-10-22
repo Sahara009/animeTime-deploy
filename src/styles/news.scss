@@ -1,0 +1,39 @@
+.list_franchise {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 1rem;
+}
+.list_franchise-item {
+  border-radius: 8px;
+  overflow: hidden;
+}
+.list_franchise-item {
+  img {
+    mask-image: linear-gradient(to bottom, #000, transparent);
+  }
+  position: relative;
+  background-size: cover;
+  border: 1px solid rgba(0, 0, 0, 0.386);
+}
+.list_franchise-item h3 {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+
+  font-size: 1.5vw;
+  font-weight: 500;
+
+  @media (max-width: 630px) {
+    font-size: 2.5vw;
+  }
+}
+@media (max-width: 680px) {
+  .list_franchise {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .list_anime {
+    gap: 10px;
+    row-gap: 15px;
+  }
+}

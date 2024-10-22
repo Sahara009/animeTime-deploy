@@ -1,9 +1,9 @@
 import { X } from "lucide-react";
 import React, { useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import lupa from "../assets/icons8-лупа.svg";
 
-import { useAuth } from "../hooks/use-auth";
+// import { useAuth } from "../hooks/use-auth";
 
 interface Props {
   className?: string;
@@ -13,7 +13,7 @@ interface Props {
 export const Modal: React.FC<Props> = ({ handlerModal }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
-  const { isAuth } = useAuth();
+  // const { isAuth } = useAuth();
 
   const handleMoreClick = () => {
     navigate(`/filters?searchTerm=${encodeURIComponent(searchTerm)}`);
@@ -39,7 +39,7 @@ export const Modal: React.FC<Props> = ({ handlerModal }) => {
           />
         </div>
 
-        {isAuth ? (
+        {/* {isAuth ? (
           <>
             <Link to={"/account"}>Аккаунт</Link>
           </>
@@ -48,8 +48,9 @@ export const Modal: React.FC<Props> = ({ handlerModal }) => {
             <NavLink to={"/login"}>Войти</NavLink>
             <NavLink to={"/registration"}>Регистрация</NavLink>
           </>
-        )}
+        )} */}
         <NavLink to={"/shedules"}>Рассписание</NavLink>
+        <NavLink to={"/favorite"}>Избранное</NavLink>
         <NavLink to={"/filters"}>Каталог</NavLink>
         <NavLink to={"/random"}>Рандомное</NavLink>
       </nav>

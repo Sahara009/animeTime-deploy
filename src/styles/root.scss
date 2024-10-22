@@ -8,6 +8,7 @@
 @import "./skeletons.scss";
 @import "./favorite.scss";
 @import "./form.scss";
+@import "./news.scss";
 
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
@@ -104,10 +105,7 @@ body::-webkit-scrollbar {
     font-size: 19px;
   }
 }
-.mainTitle {
-  margin-bottom: 15px;
-  font-weight: 400;
-}
+
 .last-viewed {
   padding: 30px 20px 40px;
 }

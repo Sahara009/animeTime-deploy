@@ -15,6 +15,7 @@ import { AccountPage } from "./pages/AccountPage";
 import { Shedules } from "./pages/Shedules";
 import { Collection } from "./pages/Collections";
 import { useState } from "react";
+import { FavoritesPage } from "./pages/FavoritesPage";
 
 export function App() {
   const [isBackgroundDimmed, setIsBackgroundDimmed] = useState<boolean>(false);
@@ -49,6 +50,7 @@ export function App() {
                 <Route path="/registration" element={<RegistrationPage />} />
                 <Route path="/account" element={<AccountPage />} />
                 <Route path="/collections" element={<Collection />} />
+                <Route path="/favorite" element={<FavoritesPage />} />
               </Route>
             </Routes>
           </SkeletonTheme>

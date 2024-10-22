@@ -11,6 +11,7 @@ import { RootState } from "../store";
 import catAvatar from "../assets/cat-avatar-generator-svgrepo-com.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { setAvatar } from "../store/slices/userSlice";
+import favorite from "../assets/favorite-svgrepo-com.svg";
 
 const theme = createTheme({
   palette: {
@@ -75,14 +76,20 @@ export const Layout = () => {
               </Link>
             </>
           ) : (
-            <nav>
-              <NavLink className="login" to={"/login"}>
-                Войти
-              </NavLink>
-              <NavLink className="registration" to={"/registration"}>
-                Регистрация
-              </NavLink>
-            </nav>
+            // <nav className="account-log">
+            //   <NavLink className="login" to={"/login"}>
+            //     Войти
+            //   </NavLink>
+            //   <NavLink className="registration" to={"/registration"}>
+            //     Регистрация
+            //   </NavLink>
+            // </nav>
+            <NavLink className="favorite" to={"/favorite"}>
+              <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                Избранное
+                <img style={{ width: 25 }} src={favorite} alt="" />
+              </div>
+            </NavLink>
           )}
 
           {!popup ? (

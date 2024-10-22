@@ -4,9 +4,10 @@ $title-color: #e91e63;
   font-size: 34px;
   font-weight: 500;
   transition: 0.2s ease-in-out;
-  // margin-right: -4.5vw;
+  color: $title-color;
+
   &:hover {
-    color: $title-color;
+    color: #ffd0e0;
     text-shadow: 0 0 10px #e91e63;
   }
 }
@@ -23,7 +24,6 @@ $title-color: #e91e63;
     display: flex;
     gap: 18px;
     font-weight: 300;
-
     font-size: 17px;
     align-items: center;
 
@@ -34,7 +34,6 @@ $title-color: #e91e63;
     a:hover {
       color: $title-color;
     }
-    // margin-right: -2.5vw;
   }
   &_modal {
     color: black;
@@ -174,8 +173,13 @@ $title-color: #e91e63;
     }
   }
 }
-@media (max-width: 970px) {
+@media (max-width: 1100px) {
   .header_list {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+  .favorite {
     width: 0;
     height: 0;
     overflow: hidden;

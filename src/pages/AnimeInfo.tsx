@@ -11,11 +11,10 @@ import {
 } from "@mui/material";
 import { AISkeleton } from "../components/AISkeleton";
 import { AnimeDescription } from "../components/AnimeDescription";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
-import { AnimeCard } from "../components";
 import { saveEpisode } from "../store/slices/animeSlice";
 import { useDispatch } from "react-redux";
+import Recommendations from "../components/Recomendations";
 
 interface Props {
   className?: string;
@@ -27,8 +26,8 @@ export const AnimeInfo: React.FC<Props> = ({
   toggleBackgroundDim,
   isBackgroundDimmed,
 }) => {
-  const { code } = useParams();
-  const [title, setTitle] = useState<List>();
+  const { code } = useParams<{ code: string }>();
+  const [title, setTitle] = useState<List | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(false);
   const [activeEpisode, setActiveEpisode] = useState<string>("1");
   const [recommendations, setRecommendations] = useState<List[]>([]);
@@ -40,6 +39,12 @@ export const AnimeInfo: React.FC<Props> = ({
   useEffect(() => {
     createTitle();
     window.scrollTo(0, 0);
+
+    // const valuesArray = Object.keys(localStorage).map((key) =>
+    //   localStorage.getItem(key)
+    // );
+
+    // console.log(valuesArray);
   }, [location]);
 
   const createTitle = async () => {
@@ -231,16 +236,7 @@ export const AnimeInfo: React.FC<Props> = ({
           <h4>{title?.description}</h4>
         </div>
 
-        <div style={{ marginTop: "40px" }}>
-          <h2 style={{ marginBottom: 20 }}>Похожее</h2>
-          <Swiper spaceBetween={15} slidesPerView={4}>
-            {recommendations.map((anime) => (
-              <SwiperSlide key={anime.code}>
-                <AnimeCard item={anime} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+        <Recommendations recommendations={recommendations} />
       </div>
     </>
   );

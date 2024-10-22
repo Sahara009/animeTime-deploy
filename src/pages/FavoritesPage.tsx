@@ -18,13 +18,14 @@ export const FavoritesPage: React.FC<Props> = () => {
   };
 
   return (
-    <div className="favorites-page">
+    <div style={{ margin: 40 }} className="container favorites-page">
       {favorites.length > 0 ? (
         <div className="favorites-list">
           {favorites.map((anime: List) => (
             <div key={anime.id} style={{ maxWidth: 250 }}>
               <AnimeCard item={anime} className="favorite-card" />
               <button
+                style={{ marginTop: 10 }}
                 onClick={() => handleRemoveFavorite(anime.id)}
                 className="remove-favorite-button"
               >
@@ -34,7 +35,9 @@ export const FavoritesPage: React.FC<Props> = () => {
           ))}
         </div>
       ) : (
-        <p style={{ color: "gray" }}>Избранных аниме пока нет.</p>
+        <p style={{ color: "gray", textAlign: "center", marginBottom: "56vh" }}>
+          Избранных аниме пока нет.
+        </p>
       )}
     </div>
   );

@@ -50,7 +50,7 @@ export const getFranchiseList = async (): Promise<List[]> => {
   try {
     const response = await axios.get("https://api.anilibria.tv/v3/feed?");
 
-    console.log(response);
+    // console.log(response);
     return response.data.list;
   } catch (error) {
     console.error("Error fetching franchise list:", error);

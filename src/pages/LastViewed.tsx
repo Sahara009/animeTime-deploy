@@ -1,57 +1,42 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { List } from "../types/schedule.type";
 import { AnimeCard } from "../components";
 
 export const LastViewed = () => {
-  const [watchedAnime, setWatchedAnime] = useState([]);
-  console.log(watchedAnime);
-  const animeListRef = useRef<HTMLDivElement | null>(null);
+  const [title, setTitles] = useState<List[]>([]);
+  console.log(setTitles, title);
 
   useEffect(() => {
-    const savedWatchedAnime = localStorage.getItem("watchedAnime");
-    if (savedWatchedAnime) {
-      try {
-        const parsedAnime = JSON.parse(savedWatchedAnime);
-        setWatchedAnime(parsedAnime);
-      } catch (error) {
-        console.error("Ошибка парсинга данных из localStorage:", error);
-      }
+    const valuesArray = Object.keys(localStorage)
+      .map((key) => {
+        const value = localStorage.getItem(key);
+        return value ? JSON.parse(value) : null;
+      })
+      .filter((item) => item !== null);
+
+    const titleList = valuesArray
+      .map((item) => item.title)
+      .filter((title) => title !== undefined);
+    console.log(titleList);
+    if (titleList) {
+      setTitles(titleList);
     }
   }, []);
 
-  const scrollToAnimeList = () => {
-    if (animeListRef.current) {
-      const offset = 90;
-      const top =
-        animeListRef.current.getBoundingClientRect().top +
-        window.scrollY -
-        offset;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
-  };
+  if (title.length == 0) {
+    return <h1>список пуст</h1>;
+  }
 
   return (
-    <div className="last-viewed container">
-      <div className="welcome-message">
-        <h1>Добро пожаловать!</h1>
-        <p>У нас все самое лучшее и новинки аниме!</p>
-        <button className="explore-button" onClick={scrollToAnimeList}>
-          Смотреть все
-        </button>
-      </div>
-      {watchedAnime.length > 0 ? (
-        <>
-          <h1 className="mainTitle">Последнее, что вы смотрели</h1>
-          <div className="last-viewed-list" ref={animeListRef}>
-            {watchedAnime.map((item, index) => (
-              <div className="list_anime-item" key={index}>
-                <AnimeCard item={item} />
-              </div>
-            ))}
+    <div style={{ marginBottom: 40 }} className="container">
+      <h1 style={{ marginBottom: 10 }}>Недавно смотрели</h1>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 30 }}>
+        {title.map((anime, index) => (
+          <div style={{ width: 200 }} key={index}>
+            <AnimeCard item={anime} />
           </div>
-        </>
-      ) : (
-        <></>
-      )}
+        ))}
+      </div>
     </div>
   );
 };

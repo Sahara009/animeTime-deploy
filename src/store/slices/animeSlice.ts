@@ -62,7 +62,11 @@ export const animeSlice = createSlice({
 
         const watchedAnime = Object.values(state.watched)
           .filter((value) => value.time > 0)
-          .map((value) => JSON.parse(JSON.stringify(value.anime)));
+          .map((value) => ({
+            anime: JSON.parse(JSON.stringify(value.anime)),
+            episode: value.episode,
+            time: value.time,
+          }));
 
         localStorage.setItem("watchedAnime", JSON.stringify(watchedAnime));
       }
