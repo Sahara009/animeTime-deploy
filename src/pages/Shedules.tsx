@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getTitleSchedule } from "../api";
 import { ScheduleArray } from "../types/schedule.type";
 import { AnimeCard } from "../components/AnimeCard";
