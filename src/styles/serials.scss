@@ -181,6 +181,12 @@
   @media (max-width: 480px) {
     bottom: 10%;
   }
+  @media (max-width: 380px) {
+    bottom: 20%;
+  }
+  @media (max-width: 330px) {
+    bottom: 40%;
+  }
 }
 @media (max-width: 1000px) {
   .hidden-desc {

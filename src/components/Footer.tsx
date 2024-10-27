@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import telegram from "../assets/telegram.svg";
 import github from "../assets//github.svg";
-// import discord from "../assets/discord.svg";
 import add from "../assets/85e0df96fb78ee2424ad7447005c728e.gif";
 
 interface Props {
@@ -21,9 +20,7 @@ export const Footer: React.FC<Props> = () => {
           <Link to={"https://t.me/Hcth5"}>
             <img width={40} src={telegram} alt="" />
           </Link>
-          {/* <Link to={"/"}>
-            <img width={40} src={discord} alt="" />
-          </Link> */}
+
           <Link to={"https://github.com/Sahara009"}>
             <img width={40} src={github} alt="" />
           </Link>

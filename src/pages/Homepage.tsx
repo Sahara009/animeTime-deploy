@@ -11,6 +11,21 @@ export const Homepage: React.FC<Props> = () => {
   return (
     <>
       <div>
+        <div className="container welcome-message">
+          <h1>Добро пожаловать в мир аниме!</h1>
+          <p>Лучшие сериалы и фильмы ждут вас!</p>
+          <button
+            className="explore-button"
+            onClick={() =>
+              window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: "smooth",
+              })
+            }
+          >
+            Смотреть
+          </button>
+        </div>
         <LastViewed />
         <NewsList />
         <AnimeList />

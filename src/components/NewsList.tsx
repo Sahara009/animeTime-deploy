@@ -39,6 +39,7 @@ export const NewsList: React.FC<Props> = () => {
   const createList = async () => {
     const data = await getFranchiseList();
     if (data) {
+      // console.log(data);
       setList(data);
     }
   };
@@ -47,10 +48,11 @@ export const NewsList: React.FC<Props> = () => {
     createList();
   }, []);
 
-  if (list.length !== 0) {
+  if (list.length == 0) {
     return (
-      <div>
-        <Skeleton className="list_franchise" count={3} />
+      <div className="list_franchise-skeleton container">
+        <h1 className="mainTitle">Новости</h1>
+        <Skeleton baseColor="#363737" count={3} />
       </div>
     );
   }

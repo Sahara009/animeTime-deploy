@@ -42,7 +42,6 @@ export const Input: React.FC<Props> = () => {
     setSearchTerm(value);
   };
 
-  // Обработчик для кнопки "Ещё"
   const handleMoreClick = () => {
     navigate(`/filters?searchTerm=${encodeURIComponent(searchTerm)}`);
   };

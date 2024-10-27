@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { List } from "../types/schedule.type";
 import { AnimeCard } from "../components";
+import Skeleton from "react-loading-skeleton";
 
 export const LastViewed = () => {
   const [title, setTitles] = useState<List[]>([]);
-  console.log(setTitles, title);
+  // console.log(setTitles, title);
 
   useEffect(() => {
     const valuesArray = Object.keys(localStorage)
@@ -23,19 +24,27 @@ export const LastViewed = () => {
     }
   }, []);
 
-  if (title.length == 0) {
-    return <h1>список пуст</h1>;
-  }
-
-  return (
-    <div style={{ marginBottom: 40 }} className="container">
-      <h1 style={{ marginBottom: 10 }}>Недавно смотрели</h1>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 30 }}>
-        {title.map((anime, index) => (
-          <div style={{ width: 200 }} key={index}>
-            <AnimeCard item={anime} />
-          </div>
-        ))}
+  return title.length === 0 ? (
+    <div className="skeletons container">
+      <Skeleton baseColor="#363737" className="skeleton-list" count={5} />
+    </div>
+  ) : (
+    <div className="lastviewed ">
+      <div className=" container ">
+        <h1 style={{ marginBottom: 10 }}>Недавно смотрели</h1>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 30,
+          }}
+        >
+          {title.map((anime) => (
+            <div className="list_anime-item" key={anime.id}>
+              <AnimeCard item={anime} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

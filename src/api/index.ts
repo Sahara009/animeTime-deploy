@@ -28,7 +28,7 @@ export const getTitleInfo = async (code: string) => {
     const response = await axiosUrl.get(
       `title?code=${code}&playlist_type=array`
     );
-    console.log(response.data);
+
     console.log(response.data.rating);
     return response.data as List;
   } catch (error) {

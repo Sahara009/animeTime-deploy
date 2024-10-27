@@ -98,6 +98,24 @@
     height: 50px;
   }
 }
+.list_franchise-skeleton {
+  span {
+    display: flex;
+    grid-gap: 1rem;
+    min-height: 250px;
+
+    transition: 0.3s ease-in-out;
+
+    @media (max-width: 950px) {
+      min-height: 150px;
+    }
+    @media (max-width: 380px) {
+      min-width: 135px;
+      overflow: hidden;
+      min-height: 80px;
+    }
+  }
+}
 @media (max-width: 580px) {
   .animeInfo-skeleton_poster {
     text-align: center;
